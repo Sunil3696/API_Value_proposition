@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use("/api/value-proposition", valuePropositionRoutes);
 
 
-app.use('/test', (req, res) => {
+app.use('/test1', (req, res) => {
    
     res.json("Congratulations on deployement")
 })
