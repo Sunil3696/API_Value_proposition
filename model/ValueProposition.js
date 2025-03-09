@@ -1,20 +1,28 @@
 // models/ValueProposition.js
 const mongoose = require("mongoose");
 
+const questionAnswerSchema = new mongoose.Schema({
+  questionId: Number,
+  category: String,
+  question: String,
+  answer: String
+});
+
 const valuePropositionSchema = new mongoose.Schema({
-  targetMarket: String,
-  keyProblem: String,
-  solution: String,
-  outcome: String,
-  openaiResponse: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
   email: {
     type: String,
-    default: "ai.studio.projects@gmail.com",
+    required: true
   },
+  qaPairs: [questionAnswerSchema],
+  gptResponse: String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const ValueProposition = mongoose.model("ValueProposition", valuePropositionSchema);
