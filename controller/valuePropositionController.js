@@ -5,7 +5,7 @@ const ValueProposition = require("../model/ValueProposition");
 const generateValueProposition = async (req, res) => {
   const { qaPairs } = req.body; // Directly receive Q&A pairs
   const email = "ai.studio.projects@gmail.com";
-
+console.log("I am here");
 
   try {
     // 1. Format Q&A for GPT
