@@ -31,7 +31,7 @@ If necessary, offer suggestions to improve clarity or specificity in the stateme
 Suggest ways to make the value proposition more impactful or differentiated from competitors.
 Feedback & Testing Plan:
 Recommend simple strategies for the student to test their value proposition, such as sharing it in relevant forums, asking for feedback from their target audience, or including it in their marketing materials.
-Provide 2-3 example questions they can ask their network or potential clients to validate the strength of the statement.
+Provide 2-3 example questions they can ask their network or potential clients to validate the strength of the statement. add proper line breaking in markdown and response please
 `
       }
     ];
