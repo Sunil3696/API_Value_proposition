@@ -95,4 +95,27 @@ const getUserData = async (req, res) => {
   }
 };
 
-module.exports = { generateValueProposition ,getUserData};
+const deleteUserData = async (req, res) => {
+  const { email } = req.params; // Extract email from request parameters
+
+  try {
+    // Attempt to delete the document associated with the provided email
+    const result = await ValueProposition.deleteOne({ email: email });
+
+    // Check if a document was deleted
+    if (result.deletedCount === 1) {
+      // Respond with a success message if deletion was successful
+      res.status(200).json({ message: "User data deleted successfully" });
+    } else {
+      // If no document was found with the given email, respond with a 404 error
+      res.status(404).json({ message: "User data not found" });
+    }
+  } catch (error) {
+    // If an error occurs during the deletion process, log the error and respond with a 500 error
+    console.error("Error deleting user data:", error);
+    res.status(500).json({ error: "Failed to delete user data" });
+  }
+};
+
+
+module.exports = { generateValueProposition ,getUserData, deleteUserData};
