@@ -14,7 +14,7 @@ app.use(express.urlencoded({
 const MongodbURI = process.env.MONGO_URI;
 
 app.use(cors({
-    origin: [ 'http://localhost:5173',"https://testir.xyz","https://trafficsourcescopilot.testir.xyz", ,'http://localhost:5174',], 
+    origin: [ 'http://localhost:5173',"https://testir.xyz","https://value-proposition-copilot.testir.xyz", ,'http://localhost:5174',], 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true 
