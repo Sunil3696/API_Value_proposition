@@ -3,9 +3,9 @@ const axios = require("axios");
 const ValueProposition = require("../model/ValueProposition");
 
 const generateValueProposition = async (req, res) => {
-  const { qaPairs } = req.body; // Directly receive Q&A pairs
-  const email = "ai.studio.projects@gmail.com";
-console.log("I am here");
+  const { qaPairs } = req.body; 
+  const email = req.user.email;
+
 
   try {
     // 1. Format Q&A for GPT
@@ -80,7 +80,7 @@ console.log(prompt)
 
 
 const getUserData = async (req, res) => {
-  const { email } = req.params;
+  const email = req.user.email;
 
   try {
     const userData = await ValueProposition.findOne({ email });
@@ -96,24 +96,22 @@ const getUserData = async (req, res) => {
 };
 
 const deleteUserData = async (req, res) => {
-  const { email } = req.params; // Extract email from request parameters
+  const email = req.user.email;
 
   try {
-    // Attempt to delete the document associated with the provided email
-    const result = await ValueProposition.deleteOne({ email: email });
+    const result = await ValueProposition.updateOne(
+      { email: email },
+      { $unset: { gptResponse: "" } } 
+    );
 
-    // Check if a document was deleted
-    if (result.deletedCount === 1) {
-      // Respond with a success message if deletion was successful
-      res.status(200).json({ message: "User data deleted successfully" });
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "User data reset successfully" });
     } else {
-      // If no document was found with the given email, respond with a 404 error
       res.status(404).json({ message: "User data not found" });
     }
   } catch (error) {
-    // If an error occurs during the deletion process, log the error and respond with a 500 error
-    console.error("Error deleting user data:", error);
-    res.status(500).json({ error: "Failed to delete user data" });
+    console.error("Error resetting user data:", error);
+    res.status(500).json({ error: "Failed to reset user data" });
   }
 };
 

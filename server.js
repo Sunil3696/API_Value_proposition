@@ -12,7 +12,15 @@ app.use(express.urlencoded({
     extended: false
 }));
 const MongodbURI = process.env.MONGO_URI;
-app.use(cors());
+
+app.use(cors({
+    origin: [ 'http://localhost:5173',"https://testir.xyz","https://trafficsourcescopilot.testir.xyz", ,'http://localhost:5174',], 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true 
+}));
+
+
 app.use(cookieParser());
 
 mongoose.connect(process.env.MONGO_URI, {
